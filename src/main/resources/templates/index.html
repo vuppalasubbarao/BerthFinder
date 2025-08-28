@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Berth Finder</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #4facfe;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #00c6ff;
+            box-shadow: 0 0 8px rgba(0,198,255,0.4);
+        }
+
+        button {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            border: none;
+            padding: 12px 20px;
+            color: white;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .result-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result {
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            padding: 20px;
+            border-radius: 15px;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: popUp 0.6s ease-in-out, glow 1.5s infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes popUp {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(79,172,254,0.6); }
+            to { box-shadow: 0 0 20px rgba(0,242,254,0.9); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Berth Finder Card -->
+    <div class="card">
+        <h2>🚆 Berth Finder</h2>
+        <form action="/check" method="post">
+            <input type="number" name="berthNumber" placeholder="Enter Berth Number" required>
+            <button type="submit">Check</button>
+        </form>
+    </div>
+
+    <!-- Result Card -->
+    <div class="card result-card">
+        <p th:if="${result != null}" class="result">
+            🎯 Result: <span th:text="${result}"></span>
+        </p>
+        <p th:if="${result == null}" class="result">
+            ℹ️ No result yet
+        </p>
+    </div>
+</div>
+</body>
+</html>
