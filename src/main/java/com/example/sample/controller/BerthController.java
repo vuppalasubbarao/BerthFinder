@@ -15,7 +15,7 @@ public class BerthController {
             result =  "Invalid Berth Number";
         }
         // Simple logic
-        if (berthNumber % 8 == 1 || berthNumber % 8 == 4) {
+        else if (berthNumber % 8 == 1 || berthNumber % 8 == 4) {
             result = "Lower Berth";
         } else if (berthNumber % 8 == 2 || berthNumber % 8 == 5) {
             result = "Middle Berth";
@@ -36,5 +36,6 @@ public class BerthController {
         return "index"; // Show form initially
     }
 }
+
 
 
