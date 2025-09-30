@@ -11,6 +11,9 @@ public class BerthController {
     public String checkBerth(@RequestParam int berthNumber, Model model) {
         String result;
 
+        if(berthNumber<1){
+            result =  "Invalid Berth Number";
+        }
         // Simple logic
         if (berthNumber % 8 == 1 || berthNumber % 8 == 4) {
             result = "Lower Berth";
@@ -33,4 +36,5 @@ public class BerthController {
         return "index"; // Show form initially
     }
 }
+
 
